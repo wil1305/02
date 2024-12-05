@@ -1,0 +1,268 @@
+/* esto se coloca para quitar el paddin margin y el border de las paginas para tomar la totalidad de la caja*/
+* {
+    box-sizing: border-box;
+}
+
+body,div, nav,aside,ul,li,a,h1,h2,h3,h4 {
+    margin: 0;
+    padding: 0;
+}
+
+label, .sidebar__nav, .sidebar__picture, .sidebar__profile {
+    /* con esto evitamos que se puedan seleccionar con el mouse */
+    user-select: none;
+}
+
+/* vamos a crear las variable de color en el body */
+body {
+    --bg-color: #FF8732;
+    --sidebar-color:#F2E8DC;
+    --dark-color: #D91604;
+    --text-color: #444;
+    background-color: var(--bg-color);
+    font-family:sans-serif;
+}
+
+/* ------------  ‍⁡⁢⁣⁢SIDEBAR STYLES​⁡  ------------*/
+
+.sidebar {
+    background-color: var(--sidebar-color);
+    /* esta funcion la colocamos para que se quede fija y no se mueva con el scroll*/
+    position: fixed;
+    /* hace que ocupe todo el alto de la pagina*/
+    height: 100dvh;
+    /* le decimos q se adapte a la resolucion adecuada en este caso lo adecuado es (20vw) sino lo soporta y es menos de q sea (220px) o si lo supera q sea (300px)*/
+    width: clamp(220px, 20vw, 300px);
+    /* lo mimo hacemos aqui solo que con el tamaño de letra*/
+    font-size: clamp(1rem, 2.2vw, 3rem);
+    /* hacemos las cajas flexibles*/
+    display: flex;
+    /* aqui les damos direccion a las cajas flexibles en este caso (column)*/
+    flex-direction: column;
+    /* esto es para distribuir los elementos en todo el contenedor en partes iguales*/
+    justify-content: space-between;
+    /* aqui configuramos el padding */
+    padding: 30px 0 30px 6px;
+}
+
+.sidebar__nav {
+    /* esto le da la cantidad de espacios a la caja*/
+    flex: 1;
+    display: flex;
+}
+
+.sidebar__nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* le damos el 100% pora que el hover sea en todo lo ancho */
+    width: 100%;
+}
+
+.sidebar__item {
+    /* le quitamos los puntitos de la lista*/
+    list-style: none;
+    display: flex;
+    /* centramos el texto */
+    align-items: center;
+    /* ponemos el texto en mayusculas */
+    text-transform: uppercase;
+    /* el tamaño de la letra */
+    font-size: .9rem;
+    padding-right: 6px;
+    color: var(--dark-color);
+    /* redondeamos los bordes para cuando se ponga hover */
+    border-radius: 36px 0 0 36px;
+    /* aqui colocamos el (position:relave) como padre para luego darle (absolute) al hijo y puede colocarse donde sea en este caso el hijo es (.sidebar__item:hover::before) */
+    position: relative;
+    
+}
+
+
+.sidebar__item span {
+    /* le damos estilo a los iconos*/
+    padding: 12px;
+    font-size: 2rem;
+}
+
+.sidebar__item a {
+    /* le ponemos para que los link hereden el color de los items */
+    color: inherit;
+    /* tambien le vamos a quitar el subrayado */
+    text-decoration: none;
+}
+
+.sidebar__item:hover {
+    /* le vamos a dar color al hover osera cuando se pase el mouse por encima */
+    background-color: var(--bg-color);
+    /* le ponemos al texto el color de la variable del siderbar para q contraste */
+    color: var(--sidebar-color);
+}
+
+/* ⁡⁢⁣⁢---⁡ aqui vamos invertir los bordes de hover de lado erecho⁡⁢⁣⁢⁡⁣⁢⁢⁡⁢⁣⁢---⁡⁡ */
+
+.sidebar__item:hover::before,
+.sidebar__item:hover::after {
+    content: "";
+    background-color: var(--bg-color);
+    position: absolute;
+    /* le decimos que lo queremo a la derecha*/
+    right: 0;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+}
+
+.sidebar__item:hover::before {
+    /* aqui lo subimos */
+    top: -16px;
+    /* aqui redondeamos un lado */
+    border-bottom-right-radius: 25px;
+    /* aqui le damos sombra y color para poder hacer el efecto */
+    box-shadow: 4px 4px 0 var(--bg-color);
+}
+
+.sidebar__item:hover::after {
+    /* */
+    bottom: -16px;
+    border-top-right-radius: 25px;
+    box-shadow: 4px -4px 0 var(--bg-color);
+}
+
+/* ⁡⁢⁣--- ⁡⁢⁣⁢ SIDEBAR PICTURE STYLES ( LOGO )⁡ ---- */
+
+.sidebar__picture {
+    margin-left: 1.5rem;
+    position: relative;
+    /* se pone esto para que cuando se tenga q dar (z-index:20) al checkbox para q este por encima */
+    z-index: 10;
+}
+
+.sidebar__picture img {
+    width: clamp(4rem, 75%, 20rem);
+    margin: auto;
+    opacity: .82;
+    
+}
+
+/* ----  ⁡⁢⁣⁢SIDEBAR PROFILE MENU STYLES ( IMAGEN ) ------- ⁡*/
+
+.sidebar__profile img {
+    width: 7rem;
+    padding-right: 5px;
+}
+
+.item--profile .profile-option {
+    font-size: .9rem;
+    padding: 0px 20px 0 0px;
+    color: inherit;
+}
+
+.item--profile {
+    margin: 9px;
+    color: var(--dark-color);
+}
+
+.item--profile:hover {
+    border-radius: 30px;
+    color: var(--sidebar-color);
+}
+
+.sidebar__item img {
+    filter: drop-shadow(-5px 10px 20px #522214);
+}
+
+.item--profile::before, .item--profile::after {
+    display: none;
+}
+
+/* ------ ⁡⁢⁣⁢CHECKBOX⁡ ------- */
+
+
+/* quitamos las propiedades para que no se vea ya q vamos a utilizarlo con el icono*/
+input[type="checkbox"] {
+    display: none;
+}
+
+.sidebar__form {
+    /* le colocamos position absolute para q no interfiera y none para que no se vea*/
+    position: absolute;
+    /* le damos un (z-index:20) para que se sobreponga */
+    z-index: 20;
+    /* lo posicionamos a la derecha */
+    right: -1rem;
+}
+
+.sidebar label {
+    position: relative;
+    background-color: var(--bg-color);
+    color: var(--sidebar-color);
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: .4rem;
+}
+
+.sidebar label::before, .sidebar label::after {
+    content: "";
+    background-color: var(--bg-color);
+    position: absolute;
+    width: 10px;
+    height: 25px;
+    background-color: transparent;
+}
+
+.sidebar label::before {
+    top: -25px;
+    left: 19px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 4px 4px 0 4px var(--bg-color);
+}
+
+.sidebar label::after {
+    bottom: -25px;
+    left: 19px;
+    border-top-right-radius: 25px;
+    box-shadow: 4px -4px 0 4px var(--bg-color);
+}
+
+/* el (label) que sea hermano de un (input) que este chequeado va tener esta configuracion*/
+input[type="checkbox"]:checked ~ label {
+    color:var(--bg-color);
+    background-color:var(--sidebar-color);
+}
+
+input[type="checkbox"]:checked ~ label::after,
+input[type="checkbox"]:checked ~ label::before {
+    display: none;
+}
+
+
+/* cambiar estilo, si el (sidebar) tiene un (input) en estado de (cheked) q sea (fit-content) */
+.sidebar:has(input[type="checkbox"]:checked) {
+    width: fit-content;
+}
+
+/* modificamos el tamaño del logo para que se haga pequeño cuando este checked */
+.sidebar:has(input[type="checkbox"]:checked) .sidebar__picture img {
+    max-width: 3.8rem;
+}
+
+.sidebar:has(input[type="checkbox"]:checked) .sidebar__picture {
+    margin-left: 0;
+}
+
+
+.sidebar:has(input[type="checkbox"]:checked) picture {
+    width: fit-content;
+    margin-left: .75rem;
+}
+
+.sidebar:has(input[type="checkbox"]:checked) :is(.sidebar__item a, .profile-option) {
+    display: none;
+}
+
+.sidebar:has(input[type="checkbox"]:checked) .sidebar__item img {
+    max-width: 3.8rem;
+    filter: none;
+}
+

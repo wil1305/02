@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bk</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- este link es para poder utilizar los iconos de google -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="icon" href="nuevo-logo2-200.png">
+</head>
+
+<body> 
+    <aside class="sidebar">
+        <!--! SIDEBAR FORM o CHECKBOX !-->
+        <form class="sidebar__form">
+            <input type="checkbox" id="open-menu">
+        <!-- ejemplo <label class="material-symbols-outlined">close</label> para colocar un icono, en (for="open-meny") esto sirve para cuando se cliquea -->
+            <label class="material-symbols-outlined" for="open-menu">close</label>
+        </form>
+        <!--! SIDEBAR PICTURE o LOGO !-->
+        <picture class="sidebar__picture">
+            <!-- aqui decimos q carge este logo cuando tenga menos del width establecido y q cuando tenga mas o llegue q carge el logo mas grande -->
+            <source srcset="nuevo-logo2-200.png" media="(max-width:57.5rem)">
+            <!-- aqui colocamos el logo grande o normal -->
+            <img src="nuevo-logo2-400.png" alt="">
+        </picture>
+        <!--! SIDEBAR NAV o ICONOS !-->
+        <nav class="sidebar__nav">
+            <ul>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <a href="#">Notificaciones</a>
+                </li>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">mail</span>
+                    <a href="#">Mensajes</a>
+                </li>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <a href="#">Cart</a>
+                </li>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">account_balance</span>
+                    <a href="#">Balance</a>
+                </li>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">settings</span>
+                    <a href="#">Settings</a>
+                </li>
+            </ul>
+        </nav>
+        <!--! SIDEBAR PROFILE o IMAGEN !-->
+        <div class="sidebar__profile">
+            <ul>
+                <li class="sidebar__item item--profile">
+                    <img src="whopper-sin-fondo.png">
+                    <span class="profile-option">Profile</span>
+                </li>
+                <li class="sidebar__item">
+                    <span class="material-symbols-outlined">logout</span>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</body>
+</html>
